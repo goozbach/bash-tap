@@ -22,7 +22,8 @@ export BASH_TAP_ROOT="${TOPLEVEL}/../libexec/bash-tap"
 
 # main function for creating boostrap file
 create_bootstrap_file(){
-  echo "BASH_TAP_ROOT=${BASH_TAP_ROOT} into $1"
+  cp -f ${TOPLEVEL}/../share/bash-tap/bash-tap-bootstrap ${1}
+  sed -i "s|^#__BASH_TAP_ROOT_REPLACE__$|BASH_TAP_ROOT=\${BASH_TAP_ROOT-${BASH_TAP_ROOT}}|" ${1}
 }
 
 # Main Function
@@ -30,16 +31,12 @@ create_bootstrap_file(){
 # else create '${TESTDIR}' if it doesn't and drop bootstrap.
 if [[ ${CURRENTDIR} == "${TESTDIR}" ]]
 then
-  echo "this is a testing dir, dropping file here"
   create_bootstrap_file ${CURRENTDIR}/bash-tap-bootstrap
 else
   if [[ -d "${CURRENTDIR}/${TESTDIR}" ]]
   then
-    echo "no ${TESTDIR} dir found, creating it for file"
-    echo "mkdir -p -- ${TESTDIR}/bash-tap-bootstrap"
     create_bootstrap_file ${TESTDIR}/bash-tap-bootstrap
   else
-    echo "found ${TESTDIR} dir, dropping file there"
     create_bootstrap_file ${TESTDIR}/bash-tap-bootstrap
   fi
 fi
