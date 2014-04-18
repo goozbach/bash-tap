@@ -28,8 +28,8 @@ source $(dirname $0)/bash-tap-bootstrap
 Automatic Install
 -----------------
 1. Install the `stow` command, and GNU `make` using your system's package manager.
-2. Run `make` from the top level directory.
-   a. You can control the destination using the `PREFIX` variable:
+2. Run `make` from the top level directory.  
+   You can control the destination using the `PREFIX` variable:
 
 ```bash
 PREFIX=/opt/somedir make
@@ -37,8 +37,8 @@ PREFIX=/opt/somedir make
 
 3. Initialize your testing directory with the command `init-bash-tap`.
    This command will automaticly copy `bash-tap-bootstrap` into the directory
-   `${TESTDIR}` (default: 't/').
-   a. Control where the directory is using the `TESTDIR` variable:
+   `${TESTDIR}` (default: 't/').  
+   Control where the directory is using the `TESTDIR` variable:
 
 ```bash
 TESTDIR=testing init-bash-tap
