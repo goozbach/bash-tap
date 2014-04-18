@@ -11,6 +11,8 @@ http://testanything.org/
 Installation and Usage
 ----------------------
 
+Manual Install
+--------------
 1. Install the bash-tap files somewhere convenient for you.
    The default location of `../../bash-tap` relative to your
    test files is the easiest zero-conf way, but you can set
@@ -23,7 +25,28 @@ Installation and Usage
 source $(dirname $0)/bash-tap-bootstrap
 ```
 
-3. Run your tests with `prove my_test_dir` or your favourite
+Automatic Install
+-----------------
+1. Install the `stow` command, and GNU `make` using your system's package manager.
+2. Run `make` from the top level directory.
+   a. You can control the destination using the `PREFIX` variable:
+
+```bash
+PREFIX=/opt/somedir make
+```
+
+3. Initialize your testing directory with the command `init-bash-tap`.
+   This command will automaticly copy `bash-tap-bootstrap` into the directory
+   `${TESTDIR}` (default: 't/').
+   a. Control where the directory is using the `TESTDIR` variable:
+
+```bash
+TESTDIR=testing init-bash-tap
+```
+
+Running your tests
+------------------
+1. Run your tests with `prove my_test_dir` or your favourite
    TAP-consuming test harness, or run them manually as a
    script if you just want to see the raw TAP output.
 
