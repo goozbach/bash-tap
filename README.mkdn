@@ -1,1 +1,1 @@
-src/share/bash-tap/doc/README.mkdn
+src/share/doc/bash-tap/README.mkdn
