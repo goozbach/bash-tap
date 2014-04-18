@@ -1,0 +1,31 @@
+#!/bin/bash
+## where does this script live?
+## yes it is all needed to handle symlinks and multiple directories.
+## sets the TOPLEVEL variable
+SOURCE="${BASH_SOURCE[0]}"
+TOPLEVEL="$( dirname "${SOURCE}" )"
+while [ -h "${SOURCE}" ]
+do 
+  SOURCE="$(readlink "${SOURCE}")"
+  [[ ${SOURCE} != /* ]] && SOURCE="${TOPLEVEL}/${SOURCE}"
+  TOPLEVEL="$( cd -P "$( dirname "${SOURCE}"  )" && pwd )"
+done
+TOPLEVEL="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+
+# get the current dir
+CURRENTDIR=${PWD##*/}
+
+# if current dir is 't/' drop file here;
+# else create 't/' if it doesn't and drop bootstrap.
+
+if [[ ${CURRENTDIR} == "t/" ]]
+then
+  echo "this is a testing dir, dropping file here"
+else
+  if [[ -d ${CURRENTDIR} ]]
+  then
+    echo "found t/ dir, dropping file there"
+  else
+    echo "no t/ dir found, creating it for file"
+  fi
+fi
