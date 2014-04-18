@@ -37,7 +37,7 @@ PREFIX=/opt/somedir make
 
 3. Initialize your testing directory with the command `init-bash-tap`.
    This command will automaticly copy `bash-tap-bootstrap` into the directory
-   `${TESTDIR}` (default: 't/').  
+   `${TESTDIR}` (default: `t/`).  
    Control where the directory is using the `TESTDIR` variable:
 
 ```bash
